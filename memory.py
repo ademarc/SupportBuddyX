@@ -1,21 +1,15 @@
 from langchain.memory import ConversationBufferWindowMemory
-from config import setup_logging, get_db_creds
-from pymongo import MongoClient
+from config import setup_logging, get_db
 from bson.binary import Binary
 import pickle
 from datetime import datetime, timedelta
-from pymongo import MongoClient
-
-# Get MongoDB credentials
-MONGODB_URI, MONGODB_DB_NAME = get_db_creds()
 
 # Set up logging
 logger = setup_logging()
 
 # Initialize MongoDB collections
 try:
-    client = MongoClient(MONGODB_URI)
-    db = client[MONGODB_DB_NAME]
+    db = get_db()
     memories = db['memories']
     locks = db['locks']
     logger.info('Successfully connected to MongoDB.')

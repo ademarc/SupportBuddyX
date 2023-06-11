@@ -3,6 +3,7 @@ import logging
 from dotenv import load_dotenv
 from logging.handlers import TimedRotatingFileHandler
 import time
+from pymongo import MongoClient
 
 load_dotenv()
 
@@ -14,6 +15,12 @@ def get_db_creds():
     MONGODB_URI = os.getenv("MONGODB_URI")
     MONGODB_DB_NAME = os.getenv("MONGODB_DB_NAME")
     return MONGODB_URI, MONGODB_DB_NAME
+
+def get_db():
+    MONGODB_URI, MONGODB_DB_NAME = get_db_creds()
+    client = MongoClient(MONGODB_URI)
+    db = client[MONGODB_DB_NAME]
+    return db
 
 def setup_logging():
 

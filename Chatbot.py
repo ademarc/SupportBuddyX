@@ -1,17 +1,12 @@
-from config import setup_logging, get_db_creds
-from pymongo import MongoClient
+from config import setup_logging, get_db
 from User import User
 
 # Set up logging
 logger = setup_logging()
 
-# Get MongoDB credentials
-MONGODB_URI, MONGODB_DB_NAME = get_db_creds()
-
 class Chatbot:
     def __init__(self):
-        self.client = MongoClient(MONGODB_URI)
-        self.db = self.client[MONGODB_DB_NAME]
+        self.db = get_db()
         self.collection = self.db['users']
 
     def create_user(self, user_id):

@@ -2,21 +2,18 @@ from fastapi import FastAPI, HTTPException
 from typing import List
 from pydantic import BaseModel
 import time
-from config import setup_logging, get_db_creds
+from config import setup_logging, get_db
 from url import load_url
 from sitemap import load_sitemap
 from embed_process import embed_docs
 from memory import delete_user_memory
-from pymongo import MongoClient
 from Chatbot import Chatbot
 
 # Set up logging
 logger = setup_logging()
 
 # Set up MongoDB
-MONGODB_URI, MONGODB_DB_NAME = get_db_creds()
-client = MongoClient(MONGODB_URI)
-db = client[MONGODB_DB_NAME]
+db = get_db()
 
 class Urls(BaseModel):
     urls: List[str]
