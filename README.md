@@ -114,6 +114,7 @@ This project was created by Marcus Adebayo.
 MONGODB_URI=mongodb://localhost:27017
 MONGODB_DB_NAME=langchain
 OPENAI_API_KEY=your_openai_api_key
+INDEX_STORE=data/indexes/global_index
 ```
 
 Replace `mongodb://localhost:27017` with your MongoDB URI and `your_openai_api_key` with your OpenAI API key.
