@@ -60,7 +60,7 @@ def get_user_memory(user_id):
                 logger.info(f'Initializing memory for user {user_id}...')
 
                 # Create a new index for this user
-                memory = ConversationBufferWindowMemory(k=3, memory_key='chat_history', return_messages=False)
+                memory = ConversationBufferWindowMemory(k=3, memory_key='chat_history', input_key='question', output_key='answer', return_messages=False)
 
                 # Store this user's memory in MongoDB
                 memory_blob = Binary(pickle.dumps(memory))

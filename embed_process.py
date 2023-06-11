@@ -1,7 +1,7 @@
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
-from config import get_openai_key, setup_logging
+from config import get_openai_key, setup_logging, get_index
 import os
 
 # Set up environment variables
@@ -11,7 +11,7 @@ OPENAI_API_KEY = get_openai_key()
 logger = setup_logging()
 
 # Set index for embeddings
-index_store = 'data/indexes/global_index'
+index_store = get_index()
 embeddings = OpenAIEmbeddings()
 
 def embed_index(docs, embed_fn, index_store):

@@ -22,6 +22,10 @@ def get_db():
     db = client[MONGODB_DB_NAME]
     return db
 
+def get_index():
+    INDEX_STORE = os.getenv("INDEX_STORE")
+    return INDEX_STORE
+
 def setup_logging():
 
     LOG_DIR = 'logs/'
