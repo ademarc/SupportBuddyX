@@ -85,9 +85,7 @@ The application provides four main endpoints:
 
     Example request:
     ```bash
-    curl -X POST -H "Content-Type: application/json" -d '{"sitemap": "https://example.com/sitemap.xml"}' http
-
-://127.0.0.1:8000/addSiteMap
+    curl -X POST -H "Content-Type: application/json" -d '{"sitemap": "https://example.com/sitemap.xml"}' http://127.0.0.1:8000/addSiteMap
     ```
 
 - `/askQuestion`: This endpoint accepts a POST request with a JSON body containing a user ID and a message input. The chatbot will process the message and return a response.
