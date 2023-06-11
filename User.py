@@ -28,7 +28,14 @@ class User:
                 result = chain({"question": question}, return_only_outputs=True)
                 save_user_memory(self.user_id, self.memory)
                 logger.info(f'Generated response for user {self.user_id} with {cb.total_tokens} tokens')
-            return result
+                
+                # Extract answer and source links from the result
+                response = {
+                    "answer": result.get("answer"),
+                    "sources": list(set(doc.metadata['source'] for doc in result.get("source_documents", []) if 'source' in doc.metadata))
+                }
+
+            return response
         except Exception as e:
             logger.error(f"Failed to process question '{question}' for user {self.user_id}. Error: {str(e)}")
             return None
