@@ -32,7 +32,7 @@ def embed_index(docs, embed_fn, index_store):
 
 def embed_docs(documents):
     try:
-        text_splitter = CharacterTextSplitter(chunk_size=800, chunk_overlap=50)
+        text_splitter = CharacterTextSplitter(chunk_size=600, chunk_overlap=60)
         docs = text_splitter.split_documents(documents)
         embed_index(docs, embeddings, index_store)
         logger.info(f"Successfully processed documents.")
@@ -41,5 +41,5 @@ def embed_docs(documents):
 
 def load_documents():
     db = FAISS.load_local(index_store, embeddings)
-    retriever = db.as_retriever(search_type="similarity", search_kwargs={"k":2})
+    retriever = db.as_retriever(search_type="similarity", search_kwargs={"k":3})
     return retriever

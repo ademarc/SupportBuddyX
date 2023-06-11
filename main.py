@@ -25,7 +25,7 @@ class Question(BaseModel):
     user_id: str
     message_input: str
 
-app = FastAPI()
+app = FastAPI(title="SupportBuddyX Documentation")
 
 @app.get("/")
 def read_root():

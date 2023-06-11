@@ -1,5 +1,4 @@
 from langchain.chains import RetrievalQAWithSourcesChain
-from langchain import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from config import get_openai_key, setup_logging
 from memory import get_user_memory, save_user_memory
@@ -12,8 +11,7 @@ OPENAI_API_KEY = get_openai_key()
 # Set up logging
 logger = setup_logging()
 
-# Initialize LLMs
-chat1 = ChatOpenAI(temperature=1)
+# Initialize LLM
 chat0 = ChatOpenAI(temperature=0)
 
 class User:
@@ -26,11 +24,11 @@ class User:
             with get_openai_callback() as cb:
                 retriever = load_documents()
                 self.memory = get_user_memory(self.user_id)
-                chain = RetrievalQAWithSourcesChain.from_llm(llm=chat0, retriever=retriever)
+                chain = RetrievalQAWithSourcesChain.from_llm(llm=chat0, retriever=retriever, verbose=True)
                 result = chain({"question": question}, return_only_outputs=True)
                 save_user_memory(self.user_id, self.memory)
                 logger.info(f'Generated response for user {self.user_id} with {cb.total_tokens} tokens')
-            return result["answer"]
+            return result
         except Exception as e:
             logger.error(f"Failed to process question '{question}' for user {self.user_id}. Error: {str(e)}")
             return None
