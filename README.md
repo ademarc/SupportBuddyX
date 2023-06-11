@@ -1,4 +1,4 @@
-## Project Title: SuppoprtBuddyX - Chatbot for Websites
+## SuppoprtBuddyX - Chatbot for Websites
 
 This project is a web application built using Flask and subsequently migrated to FastAPI. The chatbot application leverages the Langchain library to facilitate a chatbot functionality which can interact with any website by processing its URLs and sitemaps. The chatbot uses OpenAI's GPT-3.5 model for natural language processing and comprehension. The FAISS library is utilized for efficient vector storage and MongoDB is the database of choice for data persistence, effectively storing and retrieving the chatbot's memory.
 
